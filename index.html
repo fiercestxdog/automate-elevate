@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automate & Elevate — Smart Design. Smarter Business.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F3;
+            --charcoal: #1A1A1A;
+            --sage: #8B9D83;
+            --clay: #C88B65;
+            --slate: #4A5568;
+            --gold: #D4AF37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(250, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--clay);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 0 4rem;
+            margin-top: 80px;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--sage);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 .highlight {
+            font-style: italic;
+            color: var(--clay);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--slate);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .btn-primary:hover {
+            background: var(--clay);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(200, 139, 101, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 2px solid var(--charcoal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            animation: fadeInRight 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .visual-card {
+            position: absolute;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .card-1 {
+            top: 0;
+            right: 100px;
+            width: 320px;
+            transform: rotate(-3deg);
+            border-left: 4px solid var(--sage);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-2 {
+            bottom: 80px;
+            right: 0;
+            width: 280px;
+            transform: rotate(5deg);
+            border-left: 4px solid var(--clay);
+            animation: float 6s ease-in-out 2s infinite;
+        }
+
+        .card-3 {
+            top: 200px;
+            left: 0;
+            width: 260px;
+            transform: rotate(-2deg);
+            border-left: 4px solid var(--gold);
+            animation: float 6s ease-in-out 4s infinite;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sage), var(--clay));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 4rem;
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: rgba(250, 248, 243, 0.7);
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(250, 248, 243, 0.05);
+            padding: 3rem;
+            border: 1px solid rgba(250, 248, 243, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--clay);
+            transition: height 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(250, 248, 243, 0.08);
+            transform: translateX(10px);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            opacity: 0.2;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .service-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: rgba(250, 248, 243, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .service-features li {
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: rgba(250, 248, 243, 0.8);
+        }
+
+        .service-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--clay);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 8rem 4rem;
+            background: linear-gradient(135deg, #F5F1E8 0%, var(--cream) 100%);
+        }
+
+        .process-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--sage), var(--clay));
+            transform: translateX(-50%);
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) .step-content {
+            order: 2;
+        }
+
+        .process-step:nth-child(even) .step-visual {
+            order: 1;
+        }
+
+        .step-content {
+            padding: 2rem;
+        }
+
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--clay);
+            opacity: 0.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .step-description {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        .step-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--sage), var(--clay));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 4rem;
+            background: var(--clay);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--clay);
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 4rem 4rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-tagline {
+            color: rgba(250, 248, 243, 0.7);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(250, 248, 243, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--clay);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(250, 248, 243, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(250, 248, 243, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(var(--rotate));
+            }
+            50% {
+                transform: translateY(-20px) rotate(var(--rotate));
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 0 2rem;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .process-step {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .process-step:nth-child(even) .step-content,
+            .process-step:nth-child(even) .step-visual {
+                order: initial;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Automate & Elevate</a></div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="ai_receptionist.html">AI Receptionist</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">Design · AI · Automation</span>
+            <h1>Smart design. <span class="highlight">Smarter business.</span></h1>
+            <p class="hero-description">
+                We craft stunning websites and implement AI automation solutions that turn visitors into customers and mundane tasks into streamlined workflows. Partnering with businesses ready to level up.
+            </p>
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-primary">Start Your Project</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="visual-card card-1" style="--rotate: -3deg;">
+                <div class="card-icon">🎨</div>
+                <div class="card-title">Web Design</div>
+                <div class="card-text">Beautiful, conversion-focused websites that represent your brand</div>
+            </div>
+            <div class="visual-card card-2" style="--rotate: 5deg;">
+                <div class="card-icon">🤖</div>
+                <div class="card-title">AI Receptionist</div>
+                <div class="card-text">24/7 intelligent customer service that never sleeps</div>
+            </div>
+            <div class="visual-card card-3" style="--rotate: -2deg;">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Automation</div>
+                <div class="card-text">Streamline operations and save hours every week</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-label">What We Do</div>
+            <h2 class="section-title">Elevate your digital presence</h2>
+            <p class="section-description">
+                From stunning web experiences to intelligent automation, we provide the tools modern businesses need to thrive in the digital age.
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <h3 class="service-title">Web Design & Development</h3>
+                <p class="service-description">
+                    Custom websites that capture attention, build trust, and drive conversions. Every pixel crafted with purpose.
+                </p>
+                <ul class="service-features">
+                    <li>Responsive design for all devices</li>
+                    <li>SEO optimization built-in</li>
+                    <li>Lightning-fast performance</li>
+                    <li>User experience focused</li>
+                    <li>Brand-aligned aesthetics</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <h3 class="service-title">AI Receptionist</h3>
+                <p class="service-description">
+                    Never miss a customer inquiry. Our AI receptionists handle calls, answer questions, and book appointments 24/7.
+                </p>
+                <ul class="service-features">
+                    <li>Natural conversation flow</li>
+                    <li>Appointment scheduling</li>
+                    <li>Multi-language support</li>
+                    <li>CRM integration</li>
+                    <li>Custom knowledge base</li>
+                </ul>
+                <a href="ai_receptionist.html" style="display: inline-block; margin-top: 1.5rem; color: var(--clay); font-weight: 600; text-decoration: none; transition: transform 0.3s ease;">
+                    Learn More →
+                </a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <h3 class="service-title">Business Automation</h3>
+                <p class="service-description">
+                    Automate repetitive tasks and free your team to focus on what matters. From email workflows to data processing.
+                </p>
+                <ul class="service-features">
+                    <li>Custom workflow design</li>
+                    <li>Email automation</li>
+                    <li>Data synchronization</li>
+                    <li>Report generation</li>
+                    <li>Integration with existing tools</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <h3 class="service-title">AI Integration</h3>
+                <p class="service-description">
+                    Harness the power of AI for your specific business needs. Custom solutions that give you a competitive edge.
+                </p>
+                <ul class="service-features">
+                    <li>Chatbot development</li>
+                    <li>Content generation tools</li>
+                    <li>Customer insight analysis</li>
+                    <li>Predictive analytics</li>
+                    <li>Process optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="process">
+        <div class="section-header">
+            <div class="section-label" style="color: var(--clay);">Our Process</div>
+            <h2 class="section-title" style="color: var(--charcoal);">How we bring your vision to life</h2>
+            <p class="section-description" style="color: var(--slate);">
+                A proven methodology that ensures exceptional results every time.
+            </p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Discovery</h3>
+                    <p class="step-description">
+                        We start by understanding your business, goals, and challenges. Through in-depth discussions, we identify opportunities where design and automation can make the biggest impact.
+                    </p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">🔍</div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Strategy</h3>
+                    <p class="step-description">
+                        With insights in hand, we craft a comprehensive strategy. We map out the user journey, design the architecture, and plan the automation workflows that will transform your operations.
+                    </p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">📋</div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Design & Build</h3>
+                    <p class="step-description">
+                        This is where the magic happens. Our team creates stunning designs and implements intelligent automation. You'll see regular progress updates and have opportunities to provide feedback.
+                    </p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">🎨</div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">04</div>
+                    <h3 class="step-title">Launch & Support</h3>
+                    <p class="step-description">
+                        We ensure a smooth launch and provide ongoing support. From training your team to monitoring performance and making optimizations, we're with you for the long haul.
+                    </p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">🚀</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2 class="cta-title">Hi, I'm Nic. Let's automate your success.</h2>
+            <p class="cta-description">
+                Ready to work smarter, not harder? Let's discuss how intelligent design and AI automation can take your business to the next level. Book a free consultation today.
+            </p>
+            <button class="btn btn-cta">Schedule a Consultation</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">Automate & Elevate</div>
+                <p class="footer-tagline">
+                    Smart design. Smarter business. Transforming businesses through intelligent design and AI automation.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Web Design</a></li>
+                    <li><a href="#services">AI Receptionist</a></li>
+                    <li><a href="#services">Automation</a></li>
+                    <li><a href="#services">AI Integration</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">About Nic</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">hello@automateandelevate.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Automate & Elevate. All rights reserved. Designed with intelligence and care.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
