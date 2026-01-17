@@ -1,0 +1,27 @@
+{
+    "current": {
+        "sections": {
+            "header": {
+                "type": "header",
+                "settings": {
+                    "logo_text": "Automate & Elevate"
+                }
+            },
+            "footer": {
+                "type": "footer",
+                "settings": {
+                    "brand_name": "Automate & Elevate",
+                    "tagline": "Smart design. Smarter business. Transforming businesses through intelligent design and AI automation.",
+                    "owner_name": "Nic",
+                    "email": "hello@automateandelevate.com"
+                }
+            }
+        },
+        "color_cream": "#FAF8F3",
+        "color_charcoal": "#1A1A1A",
+        "color_sage": "#8B9D83",
+        "color_clay": "#C88B65",
+        "color_slate": "#4A5568",
+        "color_gold": "#D4AF37"
+    }
+}

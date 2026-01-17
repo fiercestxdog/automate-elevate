@@ -1,0 +1,19 @@
+# Shopify Theme Ignores
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+*.swp
+*~
+
+# Build artifacts
+.sass-cache/
+
+# Shopify CLI
+.shopify/

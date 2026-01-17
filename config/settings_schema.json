@@ -1,0 +1,88 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Automate & Elevate",
+        "theme_version": "1.0.0",
+        "theme_author": "Automate & Elevate",
+        "theme_documentation_url": "https://github.com/fiercestxdog/automate-elevate",
+        "theme_support_url": "mailto:hello@automateandelevate.com"
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "color",
+                "id": "color_cream",
+                "label": "Cream (Background)",
+                "default": "#FAF8F3"
+            },
+            {
+                "type": "color",
+                "id": "color_charcoal",
+                "label": "Charcoal (Text)",
+                "default": "#1A1A1A"
+            },
+            {
+                "type": "color",
+                "id": "color_sage",
+                "label": "Sage (Accent 1)",
+                "default": "#8B9D83"
+            },
+            {
+                "type": "color",
+                "id": "color_clay",
+                "label": "Clay (Accent 2)",
+                "default": "#C88B65"
+            },
+            {
+                "type": "color",
+                "id": "color_slate",
+                "label": "Slate (Secondary Text)",
+                "default": "#4A5568"
+            },
+            {
+                "type": "color",
+                "id": "color_gold",
+                "label": "Gold (Highlight)",
+                "default": "#D4AF37"
+            }
+        ]
+    },
+    {
+        "name": "Typography",
+        "settings": [
+            {
+                "type": "font_picker",
+                "id": "heading_font",
+                "label": "Heading Font",
+                "default": "playfair_display_n7"
+            },
+            {
+                "type": "font_picker",
+                "id": "body_font",
+                "label": "Body Font",
+                "default": "dm_sans_n4"
+            }
+        ]
+    },
+    {
+        "name": "Social Media",
+        "settings": [
+            {
+                "type": "text",
+                "id": "social_linkedin",
+                "label": "LinkedIn URL"
+            },
+            {
+                "type": "text",
+                "id": "social_twitter",
+                "label": "Twitter URL"
+            },
+            {
+                "type": "text",
+                "id": "social_instagram",
+                "label": "Instagram URL"
+            }
+        ]
+    }
+]

@@ -1,0 +1,9 @@
+{
+    "sections": {
+        "main": {
+            "type": "ai-receptionist",
+            "settings": {}
+        }
+    },
+    "order": ["main"]
+}

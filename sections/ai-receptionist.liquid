@@ -1,0 +1,305 @@
+{{ 'ai-receptionist.css' | asset_url | stylesheet_tag }}
+
+<div class="ai-receptionist-page">
+    <div class="page-hero">
+        <div class="hero-content">
+            <h1>{{ section.settings.hero_heading | default: "Your Business Never Sleeps. Neither Should Your Front Desk." }}</h1>
+            <p>{{ section.settings.hero_subtitle1 | default: "Imagine never missing a phone call again. Ever." }}</p>
+            <p>{{ section.settings.hero_subtitle2 | default: 'No more "Sorry, we\'re closed" or voicemail frustration for your customers.' }}</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="intro-card">
+            <h2>{{ section.settings.intro_heading | default: "What Is an AI Receptionist? (In Plain English)" }}</h2>
+            <p>{{ section.settings.intro_text | default: "Think of it as having a friendly, professional person answering your phones 24/7, but it's powered by smart technology instead. Your customers call, they get answers immediately, and they can book appointments or get help just like they would with a real person. You don't need to understand how it works, you just need to know it does." }}</p>
+        </div>
+
+        <div class="benefits-grid">
+            {% for block in section.blocks %}
+                {% if block.type == 'benefit' %}
+                    <div class="benefit-card" {{ block.shopify_attributes }}>
+                        <span class="benefit-icon">{{ block.settings.icon }}</span>
+                        <h3>{{ block.settings.title }}</h3>
+                        <p>{{ block.settings.description }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            {% if section.blocks.size == 0 %}
+                <div class="benefit-card">
+                    <span class="benefit-icon">📞</span>
+                    <h3>Answer Every Call, Every Time</h3>
+                    <p>Whether it's 3pm or 3am, Monday or Sunday, your customers always reach someone. No more missed opportunities because you were busy, on another call, or closed for the day.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">💰</span>
+                    <h3>Save Thousands Every Month</h3>
+                    <p>No salary, no benefits, no sick days, no vacation time. One AI receptionist costs a fraction of what you'd pay a single employee, and it works around the clock without breaks.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">😊</span>
+                    <h3>Happy Customers, Always</h3>
+                    <p>Nobody likes voicemail. Your customers get instant answers, can book appointments right away, and never feel ignored. Happy customers become loyal customers.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📅</span>
+                    <h3>Appointments Booked Automatically</h3>
+                    <p>Customers can schedule themselves 24/7 without you lifting a finger. The AI checks your calendar, finds available times, and books it.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎯</span>
+                    <h3>Never Makes Mistakes</h3>
+                    <p>No forgetting to write down a message, no getting someone's phone number wrong, no double-booking appointments. Every detail is captured perfectly.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">⚡</span>
+                    <h3>Set Up in Minutes, Not Weeks</h3>
+                    <p>You don't need to be tech-savvy. No complicated software to learn, no equipment to install. We handle everything.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="highlight-box">
+            <h2>{{ section.settings.highlight_heading | default: "Here's the Bottom Line" }}</h2>
+            <p>{{ section.settings.highlight_text | default: "Every missed call is a customer who goes to your competitor. Every voicemail is someone who gets frustrated. An AI receptionist means you capture every opportunity, keep customers happy, and grow your business while actually saving money." }}</p>
+        </div>
+
+        <div class="simple-explanation">
+            <h2>{{ section.settings.how_it_works_heading | default: "How Does It Actually Work?" }}</h2>
+            <div class="simple-steps">
+                {% for block in section.blocks %}
+                    {% if block.type == 'step' %}
+                        <div class="step" {{ block.shopify_attributes }}>
+                            <div class="step-number">{{ forloop.index }}</div>
+                            <div class="step-content">
+                                <p><strong>{{ block.settings.title }}</strong> – {{ block.settings.description }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% assign has_steps = false %}
+                {% for block in section.blocks %}
+                    {% if block.type == 'step' %}
+                        {% assign has_steps = true %}
+                    {% endif %}
+                {% endfor %}
+
+                {% unless has_steps %}
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p><strong>Customer calls your business number</strong> – Everything stays the same for them. They dial the same number they always have.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p><strong>AI answers instantly</strong> – A friendly voice greets them, understands what they need, and helps them just like a real receptionist would.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <p><strong>You get notified</strong> – Important calls come through to you. Appointments appear on your calendar. Messages land in your email or text.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <p><strong>Customer is happy, you save time</strong> – They got help immediately. You didn't have to stop what you were doing. Everyone wins.</p>
+                        </div>
+                    </div>
+                {% endunless %}
+            </div>
+        </div>
+
+        <div class="page-cta-section">
+            <a href="{{ section.settings.cta_link | default: routes.root_url }}" class="cta-button">{{ section.settings.cta_text | default: "← Back to Main Page" }}</a>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "AI Receptionist",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Hero Section"
+        },
+        {
+            "type": "text",
+            "id": "hero_heading",
+            "label": "Hero Heading",
+            "default": "Your Business Never Sleeps. Neither Should Your Front Desk."
+        },
+        {
+            "type": "text",
+            "id": "hero_subtitle1",
+            "label": "Hero Subtitle 1",
+            "default": "Imagine never missing a phone call again. Ever."
+        },
+        {
+            "type": "text",
+            "id": "hero_subtitle2",
+            "label": "Hero Subtitle 2",
+            "default": "No more \"Sorry, we're closed\" or voicemail frustration for your customers."
+        },
+        {
+            "type": "header",
+            "content": "Introduction"
+        },
+        {
+            "type": "text",
+            "id": "intro_heading",
+            "label": "Introduction Heading",
+            "default": "What Is an AI Receptionist? (In Plain English)"
+        },
+        {
+            "type": "textarea",
+            "id": "intro_text",
+            "label": "Introduction Text",
+            "default": "Think of it as having a friendly, professional person answering your phones 24/7, but it's powered by smart technology instead."
+        },
+        {
+            "type": "header",
+            "content": "Highlight Box"
+        },
+        {
+            "type": "text",
+            "id": "highlight_heading",
+            "label": "Highlight Heading",
+            "default": "Here's the Bottom Line"
+        },
+        {
+            "type": "textarea",
+            "id": "highlight_text",
+            "label": "Highlight Text",
+            "default": "Every missed call is a customer who goes to your competitor. An AI receptionist means you capture every opportunity."
+        },
+        {
+            "type": "header",
+            "content": "How It Works"
+        },
+        {
+            "type": "text",
+            "id": "how_it_works_heading",
+            "label": "Section Heading",
+            "default": "How Does It Actually Work?"
+        },
+        {
+            "type": "header",
+            "content": "Call to Action"
+        },
+        {
+            "type": "text",
+            "id": "cta_text",
+            "label": "CTA Button Text",
+            "default": "← Back to Main Page"
+        },
+        {
+            "type": "url",
+            "id": "cta_link",
+            "label": "CTA Button Link"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "benefit",
+            "name": "Benefit Card",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "icon",
+                    "label": "Icon (emoji)",
+                    "default": "📞"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Benefit Title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "Description of this benefit."
+                }
+            ]
+        },
+        {
+            "type": "step",
+            "name": "How It Works Step",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Step Title",
+                    "default": "Step title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "description",
+                    "label": "Step Description",
+                    "default": "Description of this step."
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "AI Receptionist",
+            "blocks": [
+                {
+                    "type": "benefit",
+                    "settings": {
+                        "icon": "📞",
+                        "title": "Answer Every Call, Every Time",
+                        "description": "Whether it's 3pm or 3am, your customers always reach someone."
+                    }
+                },
+                {
+                    "type": "benefit",
+                    "settings": {
+                        "icon": "💰",
+                        "title": "Save Thousands Every Month",
+                        "description": "One AI receptionist costs a fraction of what you'd pay a single employee."
+                    }
+                },
+                {
+                    "type": "benefit",
+                    "settings": {
+                        "icon": "😊",
+                        "title": "Happy Customers, Always",
+                        "description": "Your customers get instant answers and never feel ignored."
+                    }
+                },
+                {
+                    "type": "step",
+                    "settings": {
+                        "title": "Customer calls your business number",
+                        "description": "Everything stays the same for them."
+                    }
+                },
+                {
+                    "type": "step",
+                    "settings": {
+                        "title": "AI answers instantly",
+                        "description": "A friendly voice greets them and helps them."
+                    }
+                },
+                {
+                    "type": "step",
+                    "settings": {
+                        "title": "You get notified",
+                        "description": "Appointments appear on your calendar. Messages land in your email."
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

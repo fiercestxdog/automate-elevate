@@ -1,0 +1,168 @@
+<section class="process" id="process">
+    <div class="section-header">
+        <div class="section-label" style="color: var(--clay);">{{ section.settings.label | default: 'Our Process' }}</div>
+        <h2 class="section-title" style="color: var(--charcoal);">{{ section.settings.heading | default: 'How we bring your vision to life' }}</h2>
+        <p class="section-description" style="color: var(--slate);">
+            {{ section.settings.description | default: 'A proven methodology that ensures exceptional results every time.' }}
+        </p>
+    </div>
+    <div class="process-timeline">
+        {% for block in section.blocks %}
+            <div class="process-step" {{ block.shopify_attributes }}>
+                <div class="step-content">
+                    <div class="step-number">{{ block.settings.number | default: forloop.index | prepend: '0' }}</div>
+                    <h3 class="step-title">{{ block.settings.title }}</h3>
+                    <p class="step-description">{{ block.settings.description }}</p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">{{ block.settings.icon }}</div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if section.blocks.size == 0 %}
+            <!-- Default process steps if no blocks configured -->
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Discovery</h3>
+                    <p class="step-description">We start by understanding your business, goals, and challenges. Through in-depth discussions, we identify opportunities where design and automation can make the biggest impact.</p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">🔍</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Strategy</h3>
+                    <p class="step-description">With insights in hand, we craft a comprehensive strategy. We map out the user journey, design the architecture, and plan the automation workflows that will transform your operations.</p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">📋</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Design & Build</h3>
+                    <p class="step-description">This is where the magic happens. Our team creates stunning designs and implements intelligent automation. You'll see regular progress updates and have opportunities to provide feedback.</p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">🎨</div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <div class="step-number">04</div>
+                    <h3 class="step-title">Launch & Support</h3>
+                    <p class="step-description">We ensure a smooth launch and provide ongoing support. From training your team to monitoring performance and making optimizations, we're with you for the long haul.</p>
+                </div>
+                <div class="step-visual">
+                    <div class="step-icon">🚀</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Process",
+    "settings": [
+        {
+            "type": "text",
+            "id": "label",
+            "label": "Section Label",
+            "default": "Our Process"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "How we bring your vision to life"
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "A proven methodology that ensures exceptional results every time."
+        }
+    ],
+    "blocks": [
+        {
+            "type": "step",
+            "name": "Process Step",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "number",
+                    "label": "Step Number",
+                    "default": "01"
+                },
+                {
+                    "type": "text",
+                    "id": "icon",
+                    "label": "Icon (emoji)",
+                    "default": "🔍"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Step Title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "Description of this step in your process."
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Process",
+            "blocks": [
+                {
+                    "type": "step",
+                    "settings": {
+                        "number": "01",
+                        "icon": "🔍",
+                        "title": "Discovery",
+                        "description": "We start by understanding your business, goals, and challenges."
+                    }
+                },
+                {
+                    "type": "step",
+                    "settings": {
+                        "number": "02",
+                        "icon": "📋",
+                        "title": "Strategy",
+                        "description": "We craft a comprehensive strategy and map out the user journey."
+                    }
+                },
+                {
+                    "type": "step",
+                    "settings": {
+                        "number": "03",
+                        "icon": "🎨",
+                        "title": "Design & Build",
+                        "description": "Our team creates stunning designs and implements intelligent automation."
+                    }
+                },
+                {
+                    "type": "step",
+                    "settings": {
+                        "number": "04",
+                        "icon": "🚀",
+                        "title": "Launch & Support",
+                        "description": "We ensure a smooth launch and provide ongoing support."
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

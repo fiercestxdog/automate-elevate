@@ -1,0 +1,36 @@
+<nav>
+    <div class="logo">
+        <a href="{{ routes.root_url }}">{{ section.settings.logo_text | default: shop.name }}</a>
+    </div>
+    <ul class="nav-links">
+        {% for link in section.settings.menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+        {% if section.settings.menu.links.size == 0 %}
+            <li><a href="#services">Services</a></li>
+            <li><a href="{{ routes.root_url }}/pages/ai-receptionist">AI Receptionist</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% schema %}
+{
+    "name": "Header",
+    "settings": [
+        {
+            "type": "text",
+            "id": "logo_text",
+            "label": "Logo Text",
+            "default": "Automate & Elevate"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Navigation Menu",
+            "default": "main-menu"
+        }
+    ]
+}
+{% endschema %}

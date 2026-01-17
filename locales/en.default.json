@@ -1,0 +1,55 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        },
+        "breadcrumbs": {
+            "home": "Home",
+            "home_link_title": "Back to the frontpage"
+        },
+        "newsletter_form": {
+            "newsletter_email": "Email address",
+            "submit": "Subscribe",
+            "confirmation": "Thanks for subscribing"
+        }
+    },
+    "sections": {
+        "header": {
+            "menu": "Menu"
+        },
+        "footer": {
+            "payment": "Payment methods"
+        }
+    },
+    "accessibility": {
+        "skip_to_content": "Skip to content",
+        "close": "Close",
+        "unit_price_separator": "per",
+        "vendor": "Vendor:",
+        "refresh_page": "Refresh the page"
+    },
+    "theme": {
+        "hero": {
+            "label": "Design . AI . Automation",
+            "heading": "Smart design.",
+            "heading_highlight": "Smarter business.",
+            "description": "We craft stunning websites and implement AI automation solutions that turn visitors into customers and mundane tasks into streamlined workflows."
+        },
+        "services": {
+            "label": "What We Do",
+            "heading": "Elevate your digital presence",
+            "description": "From stunning web experiences to intelligent automation, we provide the tools modern businesses need to thrive in the digital age."
+        },
+        "process": {
+            "label": "Our Process",
+            "heading": "How we bring your vision to life",
+            "description": "A proven methodology that ensures exceptional results every time."
+        },
+        "cta": {
+            "heading": "Hi, I'm Nic. Let's automate your success.",
+            "description": "Ready to work smarter, not harder? Let's discuss how intelligent design and AI automation can take your business to the next level.",
+            "button": "Schedule a Consultation"
+        }
+    }
+}

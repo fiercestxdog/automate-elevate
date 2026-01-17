@@ -1,0 +1,51 @@
+# Shopify Theme Deployment Workflow
+#
+# This workflow deploys the theme to Shopify when pushing to main branch.
+#
+# SETUP REQUIRED:
+# 1. Go to your Shopify Admin → Settings → Apps and sales channels → Develop apps
+# 2. Create a new app with "Theme write" permissions
+# 3. Install the app and get the API access token
+# 4. In GitHub repo → Settings → Secrets → Actions, add:
+#    - SHOPIFY_ACCESS_TOKEN: Your theme access token
+#    - SHOPIFY_STORE_URL: your-store.myshopify.com
+#    - SHOPIFY_THEME_ID: Target theme ID (optional, uses main theme if not set)
+
+name: Deploy to Shopify
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
+
+      - name: Deploy Theme
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE_URL }}
+        run: |
+          if [ -n "${{ secrets.SHOPIFY_THEME_ID }}" ]; then
+            shopify theme push --path . --theme ${{ secrets.SHOPIFY_THEME_ID }} --allow-live
+          else
+            shopify theme push --path . --unpublished
+          fi
+
+      - name: Deployment Summary
+        run: |
+          echo "## Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Theme deployed to ${{ secrets.SHOPIFY_STORE_URL }}" >> $GITHUB_STEP_SUMMARY
